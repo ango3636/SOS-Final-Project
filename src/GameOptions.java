@@ -10,9 +10,10 @@ public class GameOptions {
     private JLabel label;
     private JRadioButton humanButton, computerButton,S_button,O_button,simpleButton, generalButton;;
     private ButtonGroup playerChoice,letterChoice,gameChoice;
-    private Font f1 = new Font("Serif Bold Italic",Font.BOLD, 20);
+    private Font f1 = new Font("Serif Italic",Font.BOLD, 20);
     private JButton replayButton,newGameButton;
     public JTextField size;
+    public Board reBuild;
 
     public JPanel BuildLetterChoice(){
         JPanel pane = new JPanel(new GridLayout(5,1));
@@ -94,6 +95,7 @@ public class GameOptions {
         replayButton = new JButton("Replay");
 
         newGameButton = new JButton("New Game");
+        newGameButton.addActionListener(new GameOptions.newGameButtonListener());
 
         label = new JLabel("      BOARD SIZE --->");
         size = new JTextField("Enter A Integer");
@@ -126,7 +128,21 @@ public class GameOptions {
         pane.add(generalButton);
         return pane;
     }
-
-
+    public Board BuildBoard(){
+        Board board = new Board();
+        return board;
+    }
+    private class newGameButtonListener implements ActionListener {
+        public void actionPerformed(ActionEvent e){
+            int userSize = Integer.parseInt(size.getText());
+            if (e.getSource() == newGameButton) {
+                reBuild = new Board(userSize);
+                UpdateBoard();
+            }
+        }
+    }
+    public Board UpdateBoard(){
+        return reBuild;
+    }
 
 }
