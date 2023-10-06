@@ -14,7 +14,8 @@ public class GameOptions {
     private JButton replayButton,newGameButton;
     public JTextField size;
     public Board reBuild;
-
+    public Board board;
+    public GameOptions(Board board){this.board = board;}
     public JPanel BuildLetterChoice(){
         JPanel pane = new JPanel(new GridLayout(5,1));
         S_button = new JRadioButton("S");
@@ -111,12 +112,10 @@ public class GameOptions {
         label = new JLabel("SOS");
         simpleButton = new JRadioButton("Simple Game");
         simpleButton.setMnemonic(KeyEvent.VK_S);
-        simpleButton.setActionCommand("Simple Game");
         simpleButton.setSelected(true);
 
         generalButton = new JRadioButton("General Game");
         generalButton.setMnemonic(KeyEvent.VK_G);
-        generalButton.setActionCommand("General Game");
         generalButton.setSelected(true);
 
         gameChoice = new ButtonGroup();
@@ -128,21 +127,23 @@ public class GameOptions {
         pane.add(generalButton);
         return pane;
     }
-    public Board BuildBoard(){
-        Board board = new Board();
-        return board;
-    }
     private class newGameButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent e){
             int userSize = Integer.parseInt(size.getText());
+            simpleButton.setActionCommand("S");
+            generalButton.setActionCommand("G");
             if (e.getSource() == newGameButton) {
-                reBuild = new Board(userSize);
-                UpdateBoard();
+//                System.out.println(userSize);
+                board.newSize(userSize);
+                if(gameChoice.getSelection().getActionCommand() == "S"){
+                    System.out.println("Simple Game");
+                }
+                else if(gameChoice.getSelection().getActionCommand() == "G"){
+                    System.out.println(("General Game"));
+                }
             }
         }
     }
-    public Board UpdateBoard(){
-        return reBuild;
-    }
+
 
 }

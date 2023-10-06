@@ -1,6 +1,6 @@
 public class GameLogic {
-    protected static final int TOTALROWS = 3;
-    protected static final int TOTALCOLUMNS = 3;
+    int TOTALROWS = 3;
+    int TOTALCOLUMNS = 3;
 
     public enum Cell {
         EMPTY, CROSS, NOUGHT
@@ -13,10 +13,10 @@ public class GameLogic {
         PLAYING, DRAW, CROSS_WON, NOUGHT_WON
     }
     protected GameState currentGameState;
-    GameOptions userOptions;
 
-    public GameLogic(GameOptions userOptions) {
-        this.userOptions = userOptions;
+    public GameLogic(int userSize) {
+        TOTALROWS = userSize;
+        TOTALCOLUMNS = userSize;
         grid = new Cell[TOTALROWS][TOTALCOLUMNS];
         initGame();
     }
@@ -30,5 +30,33 @@ public class GameLogic {
         currentGameState = GameState.PLAYING;
         turn = 'X';
     }
+    public void resetGame() {
+        initGame();
+    }
+    public int getTotalRows() {
+        return TOTALROWS;
+    }
+    public int getTotalColumns() {
+        return TOTALCOLUMNS;
+    }
+    public Cell getCell(int row, int column) {
+        if (row >= 0 && row < TOTALROWS && column >= 0 && column < TOTALCOLUMNS) {
+            return grid[row][column];
+        } else {
+            return null;
+        }
+    }
+    public void makeMove(int row, int column) {
+        if (row >= 0 && row < TOTALROWS && column >= 0 && column < TOTALCOLUMNS && grid[row][column] == Cell.EMPTY) {
+            grid[row][column] = (turn == 'X') ? Cell.CROSS : Cell.NOUGHT;
+//            updateGameState(turn, row, column);
+            turn = (turn == 'X') ? 'O' : 'X';
+        }
+    }
+
+    public GameState getGameState() {
+        return currentGameState;
+    }
+
 
 }
