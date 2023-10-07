@@ -6,8 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
-public class GameOptions {
+public class GameOptions{
     private JLabel label;
+    JLabel gameLabel;
     private JRadioButton humanButton, computerButton,S_button,O_button,simpleButton, generalButton;;
     private ButtonGroup playerChoice,letterChoice,gameChoice;
     private Font f1 = new Font("Serif Italic",Font.BOLD, 20);
@@ -99,7 +100,7 @@ public class GameOptions {
         newGameButton.addActionListener(new GameOptions.newGameButtonListener());
 
         label = new JLabel("      BOARD SIZE --->");
-        size = new JTextField("Enter A Integer");
+        size = new JTextField("Enter an Integer");
 
         pane.add(label);
         pane.add(size);
@@ -127,7 +128,14 @@ public class GameOptions {
         pane.add(generalButton);
         return pane;
     }
+    public JPanel CurrentGameType(){
+        JPanel pane = new JPanel();
+        gameLabel = new JLabel("GAME TYPE");
+        pane.add(gameLabel);
+        return pane;
+    }
     private class newGameButtonListener implements ActionListener {
+        //when new game is pressed: board size changes, game type is displayed
         public void actionPerformed(ActionEvent e){
             int userSize = Integer.parseInt(size.getText());
             simpleButton.setActionCommand("S");
@@ -136,14 +144,18 @@ public class GameOptions {
 //                System.out.println(userSize);
                 board.newSize(userSize);
                 if(gameChoice.getSelection().getActionCommand() == "S"){
-                    System.out.println("Simple Game");
+                    gameLabel.setText("Now playing: Simple Game");
                 }
                 else if(gameChoice.getSelection().getActionCommand() == "G"){
-                    System.out.println(("General Game"));
+                    gameLabel.setText("Now playing: General Game");
+
                 }
             }
         }
     }
 
+    public void GameStart(){
+
+    }
 
 }

@@ -5,7 +5,6 @@ public class GameLogic {
     public enum Cell {
         EMPTY, CROSS, NOUGHT
     }
-
     protected Cell[][] grid;
     protected char turn;
 

@@ -6,10 +6,8 @@ public class MainWindow extends JFrame {
 //    GridBagConstraints gbc = new GridBagConstraints();
 //    GridBagConstraints gbc2 = new GridBagConstraints();
     Dimension d = new Dimension(400,600);
-    JPanel MidPane = new JPanel();
     JPanel RightPane = new JPanel();
     JPanel LeftPane = new JPanel();
-    JPanel CenterPane = new JPanel(new GridBagLayout());
     JPanel TopPane = new JPanel(new GridBagLayout());
     JPanel BottomPane = new JPanel(new GridBagLayout());
     Board board = new Board();
@@ -35,15 +33,9 @@ public class MainWindow extends JFrame {
 
         JPanel bluePlay = gameOptions.BuildBluePlayer();
         JPanel redPlay = gameOptions.BuildRedPlayer();
-        JPanel startOption = gameOptions.BuildStartOption();
-        startOption.setBackground(Color.DARK_GRAY);
 
-        MidPane.add(new JLabel("test"));
         RightPane.add(redPlay);
         LeftPane.add(bluePlay);
-        BottomPane.add(startOption);
-
-        setTopPane();
 
         //left panel dimensions
         gbc.fill = GridBagConstraints.BOTH;
@@ -55,11 +47,12 @@ public class MainWindow extends JFrame {
         add(LeftPane,gbc);
 
         //center top panel dimensions
+        setTopPane();
         gbc.gridheight = 1;
         gbc.weightx= 0;
         gbc.weighty =1;
         gbc.gridx= 1;
-        TopPane.setBackground(Color.CYAN);
+        TopPane.setBackground(Color.PINK);
         add(TopPane, gbc);
 
         //center board panel
@@ -71,10 +64,11 @@ public class MainWindow extends JFrame {
         add(board,gbc);
 
         //center bottom panel dimensions
+        setBottomPane();
         gbc.weightx= 0;
         gbc.weighty = 1;
         gbc.gridy = -2;
-        BottomPane.setBackground(Color.MAGENTA);
+        BottomPane.setBackground(Color.PINK);
         add(BottomPane, gbc);
 
         //right panel dimensions
@@ -85,16 +79,39 @@ public class MainWindow extends JFrame {
         gbc.gridheight = 4;
         add(RightPane,gbc);
     }
+    public void setBottomPane(){
+        GridBagConstraints gbc = new GridBagConstraints();
+        JPanel startOption = gameOptions.BuildStartOption();
+        JPanel currentGame = gameOptions.CurrentGameType();
+        startOption.setBackground(Color.PINK);
+        currentGame.setBackground(Color.GREEN);
+
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.gridx=0;
+        gbc.gridy=0;
+        gbc.weightx= 1;
+        gbc.weighty= 0.55;
+
+        BottomPane.add(currentGame,gbc);
+        gbc.gridx=0;
+        gbc.gridy=-1;
+        BottomPane.add(startOption,gbc);
+
+    }
     public void setTopPane(){
         GridBagConstraints gbc = new GridBagConstraints();
         JPanel gameType = gameOptions.BuildGameType();
+        gameType.setBackground(Color.GREEN);
+        JLabel title = new JLabel("S - O - S");
+        title.setFont(new Font("Serif Italic",Font.BOLD, 20));
 
         gbc.gridx=0;
         gbc.gridy=0;
-        TopPane.add(new JLabel("S - O - S"));
+        TopPane.add(title);
         gbc.gridx=0;
         gbc.gridy=-1;
 
         TopPane.add(gameType, gbc);
     }
+
 }
