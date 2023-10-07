@@ -16,15 +16,15 @@ public class Board extends JPanel {
     int SYMBOL_SIZE = CELL_SIZE - CELL_PADDING * 2;
     int userSize;
     GameLogic game;
-    Board(){
-        Border outline = BorderFactory.createLineBorder(Color.BLACK,5);
-        setBorder(outline);
-        userSize = 6;
-    }
+//    Board(){
+//        Border outline = BorderFactory.createLineBorder(Color.BLACK,5);
+//        setBorder(outline);
+//        userSize = 6;
+//    }
     public Board(int userSize){
         this.userSize = userSize;
         this.game = new GameLogic(userSize);
-        Border outline = BorderFactory.createLineBorder(Color.BLACK,5);
+        Border outline = BorderFactory.createLineBorder(Color.BLACK,3);
         setBorder(outline);
         CELL_SIZE = GAME_BOARD_SIZE/userSize;
         CELL_PADDING = CELL_SIZE / userSize;
@@ -46,6 +46,7 @@ public class Board extends JPanel {
         userSize = newSize;
         CELL_SIZE = GAME_BOARD_SIZE/newSize;
         CELL_PADDING = CELL_SIZE / newSize;
+        game.resetGame();
         repaint();
     }
     public void paintComponent(Graphics g) {
@@ -72,16 +73,16 @@ public class Board extends JPanel {
             for (int col = 0; col < userSize; ++col) {
                 int x1 = col * CELL_SIZE + CELL_PADDING;
                 int y1 = row * CELL_SIZE + CELL_PADDING;
-//                if (game.getCell(row, col) == GameLogic.Cell.CROSS) {
-//                    g2d.setColor(Color.RED);
-//                    int x2 = (col + 1) * CELL_SIZE - CELL_PADDING;
-//                    int y2 = (row + 1) * CELL_SIZE - CELL_PADDING;
-//                    g2d.drawLine(x1, y1, x2, y2);
-//                    g2d.drawLine(x2, y1, x1, y2);
-//                } else if (game.getCell(row, col) == GameLogic.Cell.NOUGHT) {
-//                    g2d.setColor(Color.BLUE);
-//                    g2d.drawOval(x1, y1, SYMBOL_SIZE, SYMBOL_SIZE);
-//                }
+                if (game.getCell(row, col) == GameLogic.Cell.CROSS) {
+                    g2d.setColor(Color.RED);
+                    int x2 = (col + 1) * CELL_SIZE - CELL_PADDING;
+                    int y2 = (row + 1) * CELL_SIZE - CELL_PADDING;
+                    g2d.drawLine(x1, y1, x2, y2);
+                    g2d.drawLine(x2, y1, x1, y2);
+                } else if (game.getCell(row, col) == GameLogic.Cell.NOUGHT) {
+                    g2d.setColor(Color.BLUE);
+                    g2d.drawOval(x1, y1, SYMBOL_SIZE, SYMBOL_SIZE);
+                }
             }
         }
     }

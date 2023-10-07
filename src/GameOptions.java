@@ -8,7 +8,7 @@ import java.awt.event.KeyEvent;
 
 public class GameOptions{
     private JLabel label;
-    JLabel gameLabel;
+    JLabel gameLabel, messageLabel;
     private JRadioButton humanButton, computerButton,S_button,O_button,simpleButton, generalButton;;
     private ButtonGroup playerChoice,letterChoice,gameChoice;
     private Font f1 = new Font("Serif Italic",Font.BOLD, 20);
@@ -129,9 +129,17 @@ public class GameOptions{
         return pane;
     }
     public JPanel CurrentGameType(){
-        JPanel pane = new JPanel();
+        JPanel pane = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
         gameLabel = new JLabel("GAME TYPE");
-        pane.add(gameLabel);
+        messageLabel = new JLabel("");
+
+        gbc.gridx=0;
+        gbc.gridy=0;
+        pane.add(gameLabel,gbc);
+        gbc.gridx=0;
+        gbc.gridy=-1;
+        pane.add(messageLabel,gbc);
         return pane;
     }
     private class newGameButtonListener implements ActionListener {
@@ -141,14 +149,26 @@ public class GameOptions{
             simpleButton.setActionCommand("S");
             generalButton.setActionCommand("G");
             if (e.getSource() == newGameButton) {
-//                System.out.println(userSize);
-                board.newSize(userSize);
-                if(gameChoice.getSelection().getActionCommand() == "S"){
-                    gameLabel.setText("Now playing: Simple Game");
+                //board size verification
+                char SizeChar = size.getText().charAt(0);
+                if (Character.isLetter(SizeChar)) {
+                    messageLabel.setText("TRY AGAIN: Enter in an Integer");
                 }
-                else if(gameChoice.getSelection().getActionCommand() == "G"){
-                    gameLabel.setText("Now playing: General Game");
+                else if((userSize <= 2) || (userSize >= 16)){
+                    messageLabel.setText("TRY AGAIN: size must be between 3-15");
+                }
+                else{
+                    messageLabel.setText("Blue Player Start");
+                    board.newSize(userSize);
 
+                    //choice of game type
+                    if(gameChoice.getSelection().getActionCommand() == "S"){
+                        gameLabel.setText("Now playing: Simple Game");
+                    }
+                    else if(gameChoice.getSelection().getActionCommand() == "G"){
+                        gameLabel.setText("Now playing: General Game");
+
+                    }
                 }
             }
         }

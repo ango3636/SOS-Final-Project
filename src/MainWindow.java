@@ -10,7 +10,7 @@ public class MainWindow extends JFrame {
     JPanel LeftPane = new JPanel();
     JPanel TopPane = new JPanel(new GridBagLayout());
     JPanel BottomPane = new JPanel(new GridBagLayout());
-    Board board = new Board();
+    Board board = new Board(6);
     GameOptions gameOptions = new GameOptions(board);
     public MainWindow() {
         // Set the title.
