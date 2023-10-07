@@ -15,10 +15,6 @@ public class Board extends JPanel {
     public static final int SYMBOL_STROKE_WIDTH = 8;
     int SYMBOL_SIZE = CELL_SIZE - CELL_PADDING * 2;
     int userSize;
-
-//    boolean playerTurn;
-//    JPanel buttonPanel = new JPanel();
-//    JButton[] buttons = new JButton[userSize];
     GameLogic game;
     Board(){
         Border outline = BorderFactory.createLineBorder(Color.BLACK,5);
@@ -89,41 +85,4 @@ public class Board extends JPanel {
             }
         }
     }
-//    private void drawBoard(){
-//        buttonPanel.setLayout(new GridLayout(userSize,userSize));
-//        buttonPanel.setBackground(Color.PINK);
-//
-//        for (int i = 0; i<9 ; i++){
-//            buttons[i] = new JButton();
-//            buttonPanel.add(buttons[i]);
-//            buttons[i].setFont(new Font("MV Boli", Font.BOLD, 120));
-//            buttons[i].setFocusable(false);
-//            buttons[i].addActionListener(new Board.boardListener());
-//        }
-//    }
-//    private class boardListener implements ActionListener {
-//        public void actionPerformed(ActionEvent e) {
-//            for (int i = 0; i < 9; i++) {
-//                if (e.getSource() == buttons[i]) {
-//                    if (playerTurn) {
-//                        if (buttons[i].getText() == "") {
-//                            buttons[i].setForeground(new Color(255, 0, 0));
-//                            buttons[i].setText("S");
-//                            playerTurn = false;
-////                        text.setText("Player 2's Turn");
-////                        check();
-//                        }
-//                    } else {
-//                        if (buttons[i].getText() == "") {
-//                            buttons[i].setForeground(new Color(0, 0, 255));
-//                            buttons[i].setText("S");
-//                            playerTurn = true;
-////                        text.setText("Player 1's Turn");
-////                        check();
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//    }
 }

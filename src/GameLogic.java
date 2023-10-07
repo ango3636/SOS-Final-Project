@@ -1,6 +1,6 @@
 public class GameLogic {
-    int TOTALROWS = 3;
-    int TOTALCOLUMNS = 3;
+    int TOTALROWS;
+    int TOTALCOLUMNS;
 
     public enum Cell {
         EMPTY, CROSS, NOUGHT
