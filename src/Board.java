@@ -67,17 +67,17 @@ public class Board extends JPanel {
     }
     private void drawBoard(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
-        g2d.setStroke(new BasicStroke(SYMBOL_STROKE_WIDTH, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+        g2d.setFont(new Font("Times New Roman", Font.BOLD, 30));
         for (int row = 0; row < userSize; ++row) {
             for (int col = 0; col < userSize; ++col) {
                 int x1 = col * CELL_SIZE + CELL_PADDING;
                 int y1 = row * CELL_SIZE + CELL_PADDING;
                 if (game.getCell(row, col) == GameLogic.Cell.CROSS) {
                     g2d.setColor(Color.RED);
-                    g2d.drawString("S", x1+(CELL_SIZE/2),y1);
+                    g2d.drawString("S", x1+((CELL_SIZE/8))+1,y1+((CELL_SIZE/2)+2));
                 } else if (game.getCell(row, col) == GameLogic.Cell.NOUGHT) {
                     g2d.setColor(Color.BLUE);
-                    g2d.drawString("O", x1,y1);
+                    g2d.drawString("O", x1+((CELL_SIZE/8))+1,y1+((CELL_SIZE/2)+2));
                 }
             }
         }
