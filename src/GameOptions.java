@@ -158,7 +158,7 @@ public class GameOptions{
                     messageLabel.setText("TRY AGAIN: size must be between 3-15");
                 }
                 else{
-                    messageLabel.setText("Blue Player Start");
+                    messageLabel.setText("Red Player Start");
                     board.newSize(userSize);
 
                     //choice of game type

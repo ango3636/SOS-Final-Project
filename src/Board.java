@@ -13,7 +13,6 @@ public class Board extends JPanel {
     int GRID_WIDTH_HALF = GRID_WIDTH / 2;
     int CELL_PADDING = CELL_SIZE / 6;
     public static final int SYMBOL_STROKE_WIDTH = 8;
-    int SYMBOL_SIZE = CELL_SIZE - CELL_PADDING * 2;
     int userSize;
     GameLogic game;
 //    Board(){
@@ -75,13 +74,10 @@ public class Board extends JPanel {
                 int y1 = row * CELL_SIZE + CELL_PADDING;
                 if (game.getCell(row, col) == GameLogic.Cell.CROSS) {
                     g2d.setColor(Color.RED);
-                    int x2 = (col + 1) * CELL_SIZE - CELL_PADDING;
-                    int y2 = (row + 1) * CELL_SIZE - CELL_PADDING;
-                    g2d.drawLine(x1, y1, x2, y2);
-                    g2d.drawLine(x2, y1, x1, y2);
+                    g2d.drawString("S", x1+(CELL_SIZE/2),y1);
                 } else if (game.getCell(row, col) == GameLogic.Cell.NOUGHT) {
                     g2d.setColor(Color.BLUE);
-                    g2d.drawOval(x1, y1, SYMBOL_SIZE, SYMBOL_SIZE);
+                    g2d.drawString("O", x1,y1);
                 }
             }
         }

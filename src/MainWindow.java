@@ -34,8 +34,8 @@ public class MainWindow extends JFrame {
         JPanel bluePlay = gameOptions.BuildBluePlayer();
         JPanel redPlay = gameOptions.BuildRedPlayer();
 
-        RightPane.add(redPlay);
-        LeftPane.add(bluePlay);
+        RightPane.add(bluePlay);
+        LeftPane.add(redPlay);
 
         //left panel dimensions
         gbc.fill = GridBagConstraints.BOTH;
